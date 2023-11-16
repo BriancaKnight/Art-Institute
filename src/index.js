@@ -5,26 +5,34 @@ import ArtService from './js/art-service.js';
 
 function getArtwork(artRequest) {
   ArtService.getArtwork(artRequest)
-    .then(function(response) {
+    .then(function (response) {
       if (response.data) {
         let itemInfoURL = response.data[0].api_link;
-        ArtService.getItemInfo(itemInfoURL) 
-        .then(function(response2) {
-          if (response2.data) {
-            printElements(response, artRequest, response2); 
-          }
-        })
+        ArtService.getItemInfo(itemInfoURL)
+          .then(function (response2) {
+            if (response2.data) {
+              let imgID = response2.data.image_id; // === imgid# to put into fetch3 iiif
+              ArtService.getImg(imgID)
+                .then(function (response3) {
+                  if (response3) {
+                    printElements(response, artRequest, response2, response3); 
+                  }
+                })
+            }
+          })
       } else {
-        printError(response, artRequest, response2);
+        printError(response, artRequest, response2, response3);
       }
     });
 }
 
-function printElements(response, artRequest, response2) {
+function printElements(response, artRequest, response2, response3) {
   const responseDiv = document.querySelector('#responseDiv');
   const p = document.createElement('p');
-  responseDiv.append(p);
-  p.append(`Here is the top result for ${artRequest}: ${response.data[0].title} by ${response2.data.artist_title}`); //'water lileis if monet search
+  const img = document.createElement('img')
+  img.src = response3
+  responseDiv.append(p, img);
+  p.append(`Here is the top result for ${artRequest}: ${response.data[0].title} by ${response2.data.artist_title}`); 
 }
 
 function printError(error, artRequest) {

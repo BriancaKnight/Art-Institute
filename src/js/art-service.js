@@ -33,6 +33,25 @@ export default class ArtService {
         return error;
       });
   }
+  static getImg(imgID) { 
+    return fetch(`https:www.artic.edu/iiif/2/${imgID}/full/843,/0/default.jpg`)
+      .then(function(response3){
+        if (!response3.ok) {
+          return response3.json()
+          .then(function(apiErrorMessage) {
+            const errorMessage = `${response3.status} ${response3.statusText} ${apiErrorMessage.message}`;
+            throw new Error(errorMessage);
+          });
+      }else {
+        console.log(response3);
+        return response3.url;  //? the fetch returns an image
+      }
+    })
+    .catch(function(error) {
+      return error;
+    });
+  }
 }
 // take response.json() form line 12, which result of getArtwork()
 // response.data[0].api_link  === our new fetc url
+
