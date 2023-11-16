@@ -34,7 +34,14 @@ function printElements(response, artRequest, response2, response3) {
   img.src = response3;
   const pDescribe = response2.data.description;
   p2.innerHTML = pDescribe;
-  p.append(`Here is the top result for ${artRequest}: ${response.data[0].title} by ${response2.data.artist_title}`); 
+  const onView = response2.data.is_on_view;
+  let onViewMessage;
+    if (onView === true) {
+      onViewMessage = "You currently can view this peice at our gallary."
+    } else {
+      onViewMessage = "This peice is not currently on view at our gallary."
+    }
+  p.append(`Here is the top result for ${artRequest}: ${response.data[0].title} by ${response2.data.artist_title}. ${onViewMessage}`); 
   responseDiv.append(p, img, p2);
 }
 
