@@ -34,7 +34,7 @@ export default class ArtService {
       });
   }
   static getImg(imgID) { 
-    return fetch(`https:www.artic.edu/iiif/2/${imgID}/full/843,/0/default.jpg`)
+    return fetch(`https:www.artic.edu/iiif/2/${imgID}/full/400,/0/default.jpg`)
       .then(function(response3){
         if (!response3.ok) {
           return response3.json()

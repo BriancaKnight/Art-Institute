@@ -11,7 +11,7 @@ function getArtwork(artRequest) {
         ArtService.getItemInfo(itemInfoURL)
           .then(function (response2) {
             if (response2.data) {
-              let imgID = response2.data.image_id; // === imgid# to put into fetch3 iiif
+              let imgID = response2.data.image_id; 
               ArtService.getImg(imgID)
                 .then(function (response3) {
                   if (response3) {
@@ -44,6 +44,12 @@ function handleForm(e) {
   document.querySelector('#artRequest').innerText = null;
   const artRequest = document.querySelector('#artRequest').value;
   getArtwork(artRequest);
+  clearResults();
+}
+
+function clearResults() {
+  const responseDiv = document.getElementById("responseDiv");
+  responseDiv.innerHTML = "";
 }
 
 window.addEventListener("load", function () {
