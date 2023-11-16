@@ -1,21 +1,37 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import Triangle from './js/triangle.js';
+import ArtService from './js/art-service.js';
 
-function handleTriangleForm(e) {
+function getArtwork(item) {
+  ArtService.getArtwork(item)
+    .then(function(response) {
+      if (response.data) {
+        printElements(response, item);
+      } else {
+        printError(response, item)
+      }
+    });
+}
+
+function printElements(response, item) {
+  const responseDiv = document.querySelector('#responseDiv');
+  const p = document.createElement('p');
+  responseDiv.append(p);
+  p.append(`Here is your result: ${response.data.title}`);
+}
+
+function printError(error, item) {
+  document.querySelector('#responseDiv').innerText = `There was an error accessing the data for ${item}: ${error.message}.`;
+}
+
+function handleForm(e) {
   e.preventDefault();
-  document.querySelector('#response').innerText = null;
-  const length2 = parseInt(document.querySelector('#length2').value);
-  const length1 = parseInt(document.querySelector('#length1').value);
-  const length3 = parseInt(document.querySelector('#length3').value);
-  const triangle = new Triangle(length1, length2, length3);
-  const response = triangle.checkType();
-  const pTag = document.createElement("p");
-  pTag.append(response);
-  document.querySelector('#response').append(pTag);
+  document.querySelector('#artRequest').innerText = null;
+  const artRequest = document.querySelector('#artRequest').value;
+  getArtwork(artRequest);
 }
 
 window.addEventListener("load", function () {
-  document.querySelector("#triangle-checker-form").addEventListener("submit", handleTriangleForm);
+  document.querySelector("#art-form").addEventListener("submit", handleForm);
 });
