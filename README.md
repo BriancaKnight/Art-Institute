@@ -1,43 +1,45 @@
-# Template Repository
+# Art Institute of Chicago Catalog
 
-#### with __tests__, coverage, jest, .env, .gitignore, lint, cleanwebpack, htmlwebpack 
+#### An app for art lovers to explore the AIC catalog
 
-#### By (Your Name Here)
+#### Brianca Knight Kim Robinson and Grant Abel
 
 ## Technologies Used
 
-* _List all_
-* _the major technologies_
-* _you used in your project_
-* _here_
+* HTML
+* Javascript
+* Bootstrap
+* Node Package Manager
+* Webpack
+* CSS
+* JSON
+* Babel
+* ESLint
 
 ## Description
+A simple interface utilizing API calls where users can search and learn about various peices at the Art Institute. The results will always be the most popular result relating to the search query. An image of the work, the title, artist's name, and a description is printed to the page. 
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+### Cloning Instructions
+* Clone this repository to your desktop.
+* Navigate to the top level of the directory. 
+* Install Node.js with `npm install`.
+* To build the webpack run `npm run build`
+* To start the development server run `npm run start`
+* To lint the project run `npm run lint`
+
+### API Key Instructions
+* Make an account at https://www.exchangerate-api.com/ to get your personalized API key. 
+* Create a file named `.env` in the root of your directory. Make sure `.env` is added to your `.gitignore` directory. 
+* Store your API key in your `.env` file with the syntax `API_KEY=(your-api-key-goes-here)`
 
 ## Known Bugs
 
-* _Any known issues_
-* _should go here_
+* None.
 
 ## License
 
-When you create your template repository, take the time to add thorough installation/setup instructions to your README. This should include information on how to run the project:
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Installing all packages with $ npm install.
-
-Building the project using webpack with $ npm run build
-
-Starting a development server with $ npm run start
-
-Linting JS files in the src folder with $ npm run lint
-
-Running tests with Jest using $ npm run test
-
-Also, make sure you update the Technologies Used section of your README, too! There's been a host of new tech that we've used in our projects in this course section.
+Copyright (c) 2023 Brianca Knight
